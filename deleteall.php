@@ -11,4 +11,5 @@ foreach($files2 as $file2){ // iterate files
     unlink($file2); // delete file
   }
 }
+echo "Deleted Successfully!";
 ?>
