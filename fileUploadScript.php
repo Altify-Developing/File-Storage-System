@@ -1,8 +1,19 @@
 <!DOCTYPE html>
+<?php
+$config = fopen("config.json", "r") or die("Unable to open file!");
+$jsonobj = fread($config,filesize("config.json"));
+fclose($config);
+$obj = json_decode($jsonobj);
+
+$filesizelimit = $obj->filesize;
+$r1 = $obj->rand1;
+$r2 = $obj->rand2;
+$brandName = $obj->brand;
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Altify File Storage</title>
+    <title><?php echo $brandName; ?> File Storage</title>
 </head>
 <style>
 		html {
@@ -14,15 +25,6 @@
 	</style>
 <body>
 <?php
-$config = fopen("config.json", "r") or die("Unable to open file!");
-$jsonobj = fread($config,filesize("config.json"));
-fclose($config);
-$obj = json_decode($jsonobj);
-
-$filesizelimit = $obj->filesize;
-$r1 = $obj->rand1;
-$r2 = $obj->rand2;
-$brandName = $obj->brand;
 $permitted_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.-';
  
 function generate_string($input, $strength = 16) {

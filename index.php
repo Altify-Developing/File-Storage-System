@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+	$config = fopen("config.json", "r") or die("Unable to open file!");
+	$jsonobj = fread($config,filesize("config.json"));
+	fclose($config);
+	$obj = json_decode($jsonobj);
+	$brandName = $obj->brand;
+?>
 <head>
     <meta charset="UTF-8">
-    <title>Altify File Storage</title>
+    <title><?php echo $brandName; ?> File Storage</title>
 </head>
 	<style>
 		html {
