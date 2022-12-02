@@ -1,3 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Altify File Storage</title>
+</head>
+<style>
+		html {
+			background: black;
+		}
+		body {
+			color: green;
+		}
+	</style>
+<body>
 <?php
 $config = fopen("config.json", "r") or die("Unable to open file!");
 $jsonobj = fread($config,filesize("config.json"));
@@ -68,3 +83,5 @@ $rand = generate_string($permitted_chars, rand($r1, $r2));
 
     }
 ?>
+</body>
+</html>
