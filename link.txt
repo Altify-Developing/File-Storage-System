@@ -1,0 +1,6 @@
+http://2069cd5d-fd88-43af-8a74-b56dbb7218a6.id.repl.co/
+
+$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$fh2 = fopen("link.txt", 'w');
+fwrite($fh2, $actual_link);
+fclose($fh2);

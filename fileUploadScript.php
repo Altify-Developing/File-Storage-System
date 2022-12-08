@@ -4,11 +4,10 @@ $config = fopen("config.json", "r") or die("Unable to open file!");
 $jsonobj = fread($config,filesize("config.json"));
 fclose($config);
 $obj = json_decode($jsonobj);
-
+$brandName = $obj->brand;
 $filesizelimit = $obj->filesize;
 $r1 = $obj->rand1;
 $r2 = $obj->rand2;
-$brandName = $obj->brand;
 ?>
 <html lang="en">
 <head>
@@ -25,7 +24,7 @@ $brandName = $obj->brand;
 	</style>
 <body>
 <?php
-$permitted_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.-';
+$permitted_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
  
 function generate_string($input, $strength = 16) {
     $input_length = strlen($input);
@@ -68,14 +67,14 @@ $rand = generate_string($permitted_chars, rand($r1, $r2));
         $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
 
         if ($didUpload) {
-					$pathTo = 'pages/' . $rand . $fileName . ".html";
+					$pathTo = 'pages/' . $rand . $fileName . ".php";
           echo "<p>The file " . basename($fileName) . " has been uploaded!</p><br>Check it out <a href=\"$pathTo\">here</a>";
-					$content = "<!DOCTYPE HTML5>\n<html>\n<head>\n	<meta charset=\"utf-8\">\n	<meta max-age='1'/>\n	<meta name=\"viewport\" content=\"width=device-width\">\n	<title>" . basename($fileName) . " | $brandName File Storage</title>\n	<link href=\"https://bouncecss.bookie0.repl.co/bounce.css\" rel=\"stylesheet\" type=\"text/css\" />\n</head>\n<body>\n<a href=\"/$downloadPath\">$fileName</a>\n</body>\n</html>";
+					$content = "<!DOCTYPE HTML5>\n<html><?php\n" . "$" . "config" . " = fopen(\"config.json\", \"r\") or die(\"Unable to open file!\");\n" . "$" . "jsonobj" . " = fread(" . "$" . "config" . ",filesize(\"config.json\"));\nfclose(" . "$" . "config" . ");\n" . "$" . "obj" . " = json_decode(" . "$" . "jsonobj" . ");\n" . "$" . "brandName" . " = " . "$" . "obj" . "->" . "$" . "brand" . ";\n?>\n<head>\n	<meta charset=\"utf-8\">\n	<meta max-age='1'/>\n	<meta name=\"viewport\" content=\"width=device-width\">\n	<title>" . basename($fileName) . " | <?php echo " . "$" . "brandName; ?> File Storage</title>\n	<link href=\"https://bouncecss.bookie0.repl.co/bounce.css\" rel=\"stylesheet\" type=\"text/css\" />\n</head>\n<body>\n<a href=\"/$downloadPath\">$fileName</a>\n</body>\n</html>";
 					$fh = fopen($pathTo, 'w');
 					fwrite($fh, $content);
 					fclose($fh);
         } else {
-          echo "An error occurred. Please contact the <a href=\"mailto:altifygaming0@gmail.com?subject=An%20error%20occurred%20in%20the%20File%20Storage%20System%20project&body=Hey%20Altify%20Developing%2C%0D%0A%0D%0AThere%20was%20an%20error%20in%20the%20website%20for%20file%20storage%20%7Bupload%20screenshot%20here%7D%0D%0A%0D%0AThanks%2C%20%7Bname%20or%20discord%20tag%20or%20leave%20blank%20if%20you%20wish%20to%20remain%20anonymous%7D\">administrator</a>.";
+          echo "An error occurred. Please contact the <a href=\"mailto:$email?subject=An%20error%20occurred%20in%20the%20File%20Storage%20System%20project&body=Hey%20$brandName%2C%0D%0A%0D%0AThere%20was%20an%20error%20in%20the%20website%20for%20file%20storage%20%7Bupload%20screenshot%20here%7D%0D%0A%0D%0AThanks%2C%20%7Bname%20or%20discord%20tag%20or%20leave%20blank%20if%20you%20wish%20to%20remain%20anonymous%7D\">administrator</a>.";
         }
       } else {
         foreach ($errors as $error) {

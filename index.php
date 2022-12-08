@@ -6,6 +6,7 @@
 	fclose($config);
 	$obj = json_decode($jsonobj);
 	$brandName = $obj->brand;
+	$limit = $obj->filesize;
 ?>
 <head>
     <meta charset="UTF-8">
@@ -20,6 +21,7 @@
 		}
 	</style>
 <body>
+	<h2>File Limit: <?php echo $limit / 1000000; echo "MB"; ?></h2>
     <form action="fileUploadScript.php" method="post" enctype="multipart/form-data">
         Upload a File: 
         <input type="file" name="the_file" id="fileToUpload"><br>
