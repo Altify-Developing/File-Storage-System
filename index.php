@@ -21,6 +21,7 @@
 		}
 	</style>
 <body>
+	<h1><?php echo $brandName ?> File Storage</h1>
 	<h2>File Limit: <?php echo $limit / 1000000; echo "MB"; ?></h2>
     <form action="fileUploadScript.php" method="post" enctype="multipart/form-data">
         Upload a File: 
@@ -28,4 +29,8 @@
         <input type="submit" name="submit" value="Start Upload">
     </form>
 </body>
+<footer>
+	<p>Copyright &copy; Altify Developing LLC 2022</p>
+	<p>All rights reserved</p>
+</footer>
 </html>
