@@ -13,11 +13,13 @@
     <title><?php echo $brandName; ?> File Storage</title>
 </head>
 	<style>
-		html {
-			background: black;
-		}
+		@import url("https://fonts.googleapis.com/css?family=Roboto");
+
 		body {
 			color: green;
+			background: black;
+			font-family:'Roboto', Helvetica;
+			text-align:center;
 		}
 	</style>
 <body>
@@ -25,7 +27,7 @@
 	<h2>File Limit: <?php echo $limit / 1000000; echo "MB"; ?></h2>
     <form action="fileUploadScript.php" method="post" enctype="multipart/form-data">
         Upload a File: 
-        <input type="file" name="the_file" id="fileToUpload"><br>
+        <input type="file" name="the_file" id="fileToUpload"><br> <br>
         <input type="submit" name="submit" value="Start Upload">
     </form>
 </body>
