@@ -30,7 +30,7 @@
     </form>
 </body>
 <footer>
-	<p>Copyright &copy; Altify Developing LLC 2023</p>
+	<p>Copyright &copy; Altify Developing LTD 2023</p>
 	<p>All rights reserved</p>
 </footer>
 </html>
