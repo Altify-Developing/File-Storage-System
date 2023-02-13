@@ -42,7 +42,7 @@ $rand = generate_string($permitted_chars, rand($r1, $r2));
 
     $errors = []; // Store errors here
 
-    $fileExtensionsAllowed = ['jpeg', 'gif','jpg','png', 'zip', 'exe', 'json', 'js', 'py', 'pyc', 'cpp', 'asm', 'docx']; // These will be the only file extensions allowed 
+    $fileExtensionsAllowed = ['txt', 'html', 'jpeg', 'gif','jpg','png', 'zip', 'exe', 'json', 'js', 'py', 'pyc', 'cpp', 'asm', 'docx']; // These will be the only file extensions allowed 
 
     $fileName = $_FILES['the_file']['name'];
     $fileSize = $_FILES['the_file']['size'];
@@ -69,7 +69,7 @@ $rand = generate_string($permitted_chars, rand($r1, $r2));
         if ($didUpload) {
 					$pathTo = 'pages/' . $rand . $fileName . ".php";
           echo "<p>The file " . basename($fileName) . " has been uploaded!</p><br>Check it out <a href=\"$pathTo\">here</a>";
-					$content = "<!DOCTYPE HTML5>\n<html><?php\n" . "$" . "config" . " = fopen(\"config.json\", \"r\") or die(\"Unable to open file!\");\n" . "$" . "jsonobj" . " = fread(" . "$" . "config" . ",filesize(\"config.json\"));\nfclose(" . "$" . "config" . ");\n" . "$" . "obj" . " = json_decode(" . "$" . "jsonobj" . ");\n" . "$" . "brandName" . " = " . "$" . "obj" . "->" . "$" . "brand" . ";\n?>\n<head>\n	<meta charset=\"utf-8\">\n	<meta max-age='1'/>\n	<meta name=\"viewport\" content=\"width=device-width\">\n	<title>" . basename($fileName) . " | <?php echo " . "$" . "brandName; ?> File Storage</title>\n	<link href=\"https://bouncecss.bookie0.repl.co/bounce.css\" rel=\"stylesheet\" type=\"text/css\" />\n</head>\n<body>\n<a href=\"/$downloadPath\">$fileName</a>\n</body>\n</html>";
+					$content = "<!DOCTYPE HTML5>\n<html><?php\n" . "$" . "config" . " = fopen(\"config.json\", \"r\") or die(\"Unable to open file!\");\n" . "$" . "jsonobj" . " = fread(" . "$" . "config" . ",filesize(\"config.json\"));\nfclose(" . "$" . "config" . ");\n" . "$" . "obj" . " = json_decode(" . "$" . "jsonobj" . ");\n" . "$" . "brandName" . " = " . "$" . "obj" . "->" . "$" . "brand" . ";\n?>\n<head>\n	<meta charset=\"utf-8\">\n	<meta max-age='1'/>\n	<meta name=\"viewport\" content=\"width=device-width\">\n	<title>" . basename($fileName) . " | <?php echo " . "$" . "brandName; ?> File Storage</title>\n<script src=\"https://publisher.linkvertise.com/cdn/linkvertise.js\"></script><script>linkvertise(585398, {whitelist: [], blacklist: [\"\"]});</script>\n <link href=\"https://bouncecss.bookie0.repl.co/bounce.css\" rel=\"stylesheet\" type=\"text/css\" />\n</head>\n<body>\n<a href=\"/$downloadPath\">$fileName</a>\n</body>\n</html>";
 					$fh = fopen($pathTo, 'w');
 					fwrite($fh, $content);
 					fclose($fh);
